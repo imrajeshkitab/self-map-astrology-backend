@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kitab Self Map — Know Your Personality Through the Stars</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── FORM VIEW ─────────────────────────────────────────────────── -->
+  <div id="view-form" class="view active">
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="hero-eyebrow">Kitab × Vedic Astrology</p>
+        <h1 class="hero-title">Your Personality<br>Self Map</h1>
+        <p class="hero-sub">
+          Enter your birth details. We read your planetary positions,
+          score 8 core personality dimensions, and surface the books
+          that match who you actually are.
+        </p>
+      </div>
+    </header>
+
+    <main class="form-wrap">
+      <form id="birth-form" novalidate>
+
+        <section class="form-section">
+          <h2 class="form-section-title">Who are you?</h2>
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="e.g. Anantha Krishna" required />
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h2 class="form-section-title">When were you born?</h2>
+          <div class="field-row">
+            <div class="field">
+              <label for="dob">Date of Birth</label>
+              <input type="date" id="dob" required />
+            </div>
+            <div class="field">
+              <label for="tob">Time of Birth</label>
+              <input type="time" id="tob" required />
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h2 class="form-section-title">Where were you born?</h2>
+          <div class="field">
+            <label for="city">City / Place</label>
+            <input type="text" id="city" placeholder="e.g. Hyderabad" required />
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="lat">Latitude</label>
+              <input type="number" id="lat" step="0.0001" min="-90" max="90"
+                     placeholder="e.g. 17.4065" required />
+            </div>
+            <div class="field">
+              <label for="lon">Longitude</label>
+              <input type="number" id="lon" step="0.0001" min="-180" max="180"
+                     placeholder="e.g. 78.4772" required />
+            </div>
+          </div>
+          <div class="field field--half">
+            <label for="tz">
+              Timezone Offset
+              <span class="label-hint">(hours from UTC — e.g. 5.5 for IST, -5 for EST)</span>
+            </label>
+            <input type="number" id="tz" step="0.5" min="-12" max="14"
+                   placeholder="e.g. 5.5" required />
+          </div>
+          <button type="button" class="geo-btn" id="geo-btn">
+            Use my current location
+          </button>
+        </section>
+
+        <div id="form-error" class="error-banner hidden"></div>
+
+        <button type="submit" class="cta-btn" id="submit-btn">
+          Generate My Self Map
+        </button>
+
+      </form>
+    </main>
+
+    <footer class="page-footer">
+      Powered by <a href="https://freeastrologyapi.com" target="_blank" rel="noopener">freeastrologyapi.com</a>
+      · Vedic (Lahiri) + Western astrology
+    </footer>
+  </div>
+
+
+  <!-- ── LOADING VIEW ───────────────────────────────────────────────── -->
+  <div id="view-loading" class="view">
+    <div class="loading-wrap">
+      <div class="spinner"></div>
+      <p class="loading-title">Reading your birth chart…</p>
+      <p class="loading-sub">Calculating planetary positions, Shad Bala strengths,<br>and Nakshatra modifiers. This takes about 10–20 seconds.</p>
+    </div>
+  </div>
+
+
+  <!-- ── RESULTS VIEW ───────────────────────────────────────────────── -->
+  <div id="view-results" class="view">
+    <div class="results-wrap">
+
+      <button class="back-btn" id="back-btn">← New Chart</button>
+
+      <!-- Profile header -->
+      <div class="profile-header" id="profile-header">
+        <!-- filled by JS -->
+      </div>
+
+      <!-- Radar chart -->
+      <div class="chart-section">
+        <h2 class="section-heading">Your Self Map</h2>
+        <div class="chart-container">
+          <img id="chart-img" src="" alt="Self Map radar chart" />
+        </div>
+      </div>
+
+      <!-- Dimension scores -->
+      <div class="scores-section">
+        <h2 class="section-heading">8 Personality Dimensions</h2>
+        <div class="scores-grid" id="scores-grid">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <!-- Strength & growth zones -->
+      <div class="zones-row">
+        <div class="zone-card zone-strength">
+          <h3>Strength Zones</h3>
+          <ul id="strength-list"></ul>
+        </div>
+        <div class="zone-card zone-growth">
+          <h3>Growth Zones</h3>
+          <ul id="growth-list"></ul>
+        </div>
+      </div>
+
+      <!-- Current theme -->
+      <div class="theme-card" id="theme-card">
+        <!-- filled by JS -->
+      </div>
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

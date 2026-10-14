@@ -1,0 +1,14 @@
+[build]
+  publish = "."
+
+# Proxy all /api/* requests to your Render backend.
+# Replace the `to` URL with your actual Render service URL before deploying.
+[[redirects]]
+  from   = "/api/*"
+  to     = "https://YOUR-BACKEND.onrender.com/api/:splat"
+  status = 200
+  force  = true
+
+  # Pass through all request headers (including Content-Type for JSON POST)
+  [redirects.headers]
+    X-Forwarded-Host = "self-map.netlify.app"
